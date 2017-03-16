@@ -1,0 +1,14 @@
+-- LISTAGG concatenates the values of data within each group
+
+SELECT TABLE_NAME, COLUMN_NAME FROM USER_TAB_COLS;
+
+-- If you would like to concatenate column with separator ", " , you could use LISTAGG.
+SELECT TABLE_NAME, 
+		COUNT(COLUMN_NAME) AS COLUMN_NUM, 
+		LISTAGG(COLUMN_NAME, ', ') 
+		  WITHIN GROUP (ORDER BY COLUMN_ID) AS COLUMNS
+	FROM USER_TAB_COLS 
+	WHERE COLUMN_ID IS NOT NULL
+	GROUP BY TABLE_NAME 
+	ORDER BY TABLE_NAME;
+

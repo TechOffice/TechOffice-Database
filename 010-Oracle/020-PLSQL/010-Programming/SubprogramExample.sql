@@ -1,0 +1,20 @@
+SET SERVEROUTPUT ON;
+DECLARE
+	-- Test Function
+    FUNCTION TEST_FUNC RETURN VARCHAR2 IS
+    BEGIN
+        RETURN 'TEST FUNC';
+    END TEST_FUNC;
+    
+	-- Test Procedure
+    PROCEDURE TEST_PROC IS 
+      VAR VARCHAR2(100);
+    BEGIN
+      VAR := TEST_FUNC();
+      DBMS_OUTPUT.PUT_LINE('TEST PROC RUN ' || VAR);
+    END;
+	
+BEGIN
+    TEST_PROC();
+END;
+/
